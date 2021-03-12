@@ -30,8 +30,9 @@ namespace app.Controllers
             None,
         }
         private readonly TimeSpan delay = TimeSpan.FromSeconds(20);
-
-        public  IEnumerable<WeatherForecast> Get(Failure failure = Failure.None) => failure switch
+        
+        [HttpGet]
+        public  IEnumerable<WeatherForecast> Get(Failure failure = Failure.Delay) => failure switch
         {
             Failure.Delay => DelayWeather(),
             Failure.RandomDelay => DelayWeather(new Random().Next(0,20)),

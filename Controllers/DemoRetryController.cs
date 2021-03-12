@@ -16,7 +16,7 @@ using Polly.Wrap;
 namespace app.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class DemoWeatherController : ControllerBase
     {
         private WeatherClient weatherClient;

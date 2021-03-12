@@ -37,7 +37,7 @@ namespace app
                 .FallbackAsync<IEnumerable<WeatherForecast>>(
                     async b =>
                     {
-                        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
                             {
                                 Date = DateTime.Now,
                                 TemperatureC = 0,
@@ -73,7 +73,7 @@ namespace app
             {
                 using var httpClient = new HttpClient();
                 var response =
-                    await httpClient.GetAsync("http://localhost:5000/api/weatherforecast/Delay?thisshouldrun5times", ct);
+                    await httpClient.GetAsync("weatherforecast/Delay?thisshouldrun5times", ct);
                 var str = await response.Content.ReadAsStringAsync();
                 var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
                 return JsonSerializer.Deserialize<IEnumerable<WeatherForecast>>(str, options);
