@@ -16,12 +16,12 @@ using Polly.Wrap;
 namespace app.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class DemoWeatherController : ControllerBase
     {
-        private WeatherClient weatherClient;
+        private IWeatherClient weatherClient;
 
-        public DemoWeatherController(WeatherClient weatherClient)
+        public DemoWeatherController(IWeatherClient weatherClient)
         {
             this.weatherClient = weatherClient;
         }

@@ -15,7 +15,7 @@ using Polly.Wrap;
 
 namespace app
 {
-    public class WeatherClient
+    public class WeatherClient : IWeatherClient
     {
         private readonly PolicyWrap<IEnumerable<WeatherForecast>> _policy;
 

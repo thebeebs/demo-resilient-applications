@@ -21,7 +21,7 @@ namespace app
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddSingleton<WeatherClient, WeatherClient>();
+            services.AddSingleton<IWeatherClient, WeatherClient>();
 
             services.AddControllersWithViews();
 
@@ -70,4 +70,5 @@ namespace app
             });
         }
     }
+    
 }
