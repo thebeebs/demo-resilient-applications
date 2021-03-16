@@ -6,6 +6,7 @@ export class FetchData extends Component {
   constructor(props) {
     super(props);
     this.state = { forecasts: [], loading: true };
+    this.populateWeatherData = this.populateWeatherData.bind(this);
   }
 
   componentDidMount() {
@@ -14,46 +15,53 @@ export class FetchData extends Component {
 
   static renderForecastsTable(forecasts) {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
+      
+        
+        <div>
           {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
+             <div> 
+              <div class="w-100 border talk-bubble tri-right round left-top">
+                <div class="talktext">
+                  <p>{forecast.setUp}</p>
+                </div>
+              </div>
+            <div class="w-100 border talk-bubble tri-right round right-top">
+            <div class="talktext">
+            <p>{forecast.punchLine}</p>
+            </div>
+            </div>
+               </div>
           )}
-        </tbody>
-      </table>
+        
+      </div>
     );
   }
 
   render() {
     let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
+      ? <p><i className="fa fa-refresh fa-spin fa-3x fa-fw"></i><em>Loading...</em></p>
       : FetchData.renderForecastsTable(this.state.forecasts);
+    
+    let button = this.state.loading
+        ? <div class="mx-auto p-3 w-25">
+          </div>
+        : <div class="mx-auto p-3 w-25">
+            <button className="btn btn-primary btn-lg mx-auto w-100" onClick={this.populateWeatherData}>Tell Me Another</button>
+          </div>
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
         {contents}
+        {button}
       </div>
     );
   }
 
   async populateWeatherData() {
-    const response = await fetch('api/DemoWeather');
+    this.setState({ loading: true });
+    const response = await fetch('api/Joke');
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });
   }
+  
 }

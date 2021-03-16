@@ -1,61 +1,55 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using Polly;
 using Polly.CircuitBreaker;
-using Polly.Fallback;
-using Polly.Timeout;
-using Polly.Utilities;
 using Polly.Wrap;
 
 namespace app
 {
-    public class WeatherClient : IWeatherClient
+    public class JokeClient : IJokeClient
     {
-        private readonly PolicyWrap<IEnumerable<WeatherForecast>> _policy;
+        private readonly PolicyWrap<IEnumerable<Joke>> _policy;
 
-        public WeatherClient()
+        public JokeClient()
         {
             var timeoutPolicy = Policy
                 .TimeoutAsync(2);
-                
-            var retryPolicy= Policy
+
+            var retryPolicy = Policy
                 .Handle<Exception>()
                 .RetryAsync(5);
-            
+
             var circuitBreakerPolicy = Policy
                 .Handle<Exception>()
                 .CircuitBreakerAsync(7, TimeSpan.FromMinutes(1));
 
-            var generalFallback = Policy<IEnumerable<WeatherForecast>>
+            var generalFallback = Policy<IEnumerable<Joke>>
                 .Handle<Exception>()
-                .FallbackAsync<IEnumerable<WeatherForecast>>(
+                .FallbackAsync<IEnumerable<Joke>>(
                     async b =>
                     {
-                         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                        return Enumerable.Range(1, 5).Select(index => new Joke
                             {
-                                Date = DateTime.Now,
-                                TemperatureC = 0,
-                                Summary = "This comes from a fallback"
+                                SetUp = "generalFallback setup",
+                                PunchLine = "generalFallback punchline"
                             })
                             .ToArray();
                     }
                 );
-            var circuitBreakerFallback = Policy<IEnumerable<WeatherForecast>>
+            var circuitBreakerFallback = Policy<IEnumerable<Joke>>
                 .Handle<BrokenCircuitException>()
-                .FallbackAsync<IEnumerable<WeatherForecast>>(
+                .FallbackAsync<IEnumerable<Joke>>(
                     async b =>
                     {
-                        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                        return Enumerable.Range(1, 5).Select(index => new Joke
                             {
-                                Date = DateTime.Now,
-                                TemperatureC = 0,
-                                Summary = "This comes from a fallback because of a circuit breaker"
+                                SetUp = "generalFallback setup",
+                                PunchLine = "generalFallback punchline"
                             })
                             .ToArray();
                     }
@@ -66,21 +60,20 @@ namespace app
                 .WrapAsync(timeoutPolicy)
                 .WrapAsync(circuitBreakerPolicy);
         }
-        
-        public async Task<IEnumerable<WeatherForecast>> WeatherForecasts()
+
+        public async Task<IEnumerable<Joke>> Jokes()
         {
-            var obj = await _policy.ExecuteAsync(async (ct) =>
+            var obj = await _policy.ExecuteAsync(async ct =>
             {
                 using var httpClient = new HttpClient();
                 var response =
                     await httpClient.GetAsync("weatherforecast/Delay?thisshouldrun5times", ct);
                 var str = await response.Content.ReadAsStringAsync();
                 var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};
-                return JsonSerializer.Deserialize<IEnumerable<WeatherForecast>>(str, options);
+                return JsonSerializer.Deserialize<IEnumerable<Joke>>(str, options);
             }, CancellationToken.None);
 
             return obj;
         }
-
     }
 }
