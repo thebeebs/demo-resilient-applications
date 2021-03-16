@@ -20,11 +20,18 @@ namespace app.Controllers
 
         private static readonly Tuple<string, string>[] Jokes =
         {
-            new Tuple<string, string>("s1","p1"), 
-            new Tuple<string, string>("s2","p2"),
-            new Tuple<string, string>("s3","p3"),
-            new Tuple<string, string>("s4","p4"),
-            new Tuple<string, string>("s5","p5"),
+            new Tuple<string, string>("There are 10 types of people in the world.","Those who understand binary, and those who don't"), 
+            new Tuple<string, string>("How many programmers does it take to change a light bulb?","None. It's a hardware problem."),
+            new Tuple<string, string>("In order to understand recursion.","You must first understand recursion."),
+            new Tuple<string, string>("I would tell you a UDP joke.","But you might not get it."),
+            new Tuple<string, string>("There are only two hard things in computer science.","Cache invalidation, naming things, and off-by-one errors."),
+            new Tuple<string, string>("What do computers eat for a snack?","Microchips!"),
+            new Tuple<string, string>("Whats the object-oriented way to become wealthy?","Inheritance."),
+            new Tuple<string, string>("Why did Bilbo Baggins always eat his lunch at noon?","He was always a creature of Hobbit."),
+            new Tuple<string, string>("Why are monkeys great at sports?","They are born chimpions."),
+            new Tuple<string, string>("Why don't werewolves ever know the time?","Because they're not whenwolves."),
+            new Tuple<string, string>("Why did the chicken cross the road?","That's really only the chicken's business."),
+            new Tuple<string, string>("Do you want to hear a pizza joke?","Never mind, it is pretty cheesy."),
         };
         
 
@@ -62,8 +69,9 @@ namespace app.Controllers
             var item = rng.Next(Jokes.Length);
             return Enumerable.Range(1, 1).Select(index => new Joke
                 {
-                    PunchLine = Jokes[item].Item1,
-                    SetUp = Jokes[item].Item2,
+                    SetUp = Jokes[item].Item1,
+                    PunchLine = Jokes[item].Item2,
+                    Source = "Third Party API"
                 })
                 .ToArray();
         }

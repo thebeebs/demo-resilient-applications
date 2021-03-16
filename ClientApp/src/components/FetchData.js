@@ -19,18 +19,35 @@ export class FetchData extends Component {
         
         <div>
           {forecasts.map(forecast =>
-             <div> 
-              <div class="w-100 border talk-bubble tri-right round left-top">
-                <div class="talktext">
-                  <p>{forecast.setUp}</p>
-                </div>
-              </div>
-            <div class="w-100 border talk-bubble tri-right round right-top">
-            <div class="talktext">
-            <p>{forecast.punchLine}</p>
-            </div>
-            </div>
+             <div>
+               <div class="row">
+                 <div class="col-12">&nbsp;
+                 </div>
                </div>
+               <div class="row">
+                 <div class="col-12">
+                <div class="w-100 border talk-bubble tri-right round left-top">
+                  <div class="talktext text-center"><p>{forecast.setUp}</p></div>
+                </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-12">
+                <div class="w-100 border talk-bubble tri-right round right-top">
+                  <div class=" talktext text-center"><p>{forecast.punchLine}</p></div>
+                </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="offset-3 col-6">
+                   <div class="alert alert-primary text-center" role="alert">
+                     Source: {forecast.source}
+                   </div>
+               </div>
+                 
+               </div>
+                
+            </div>
           )}
         
       </div>
@@ -39,7 +56,7 @@ export class FetchData extends Component {
 
   render() {
     let contents = this.state.loading
-      ? <p><i className="fa fa-refresh fa-spin fa-3x fa-fw"></i><em>Loading...</em></p>
+      ? <div class="mx-auto p-5 w-25"><p class="mx-auto w-100 text-light"><i className="fa fa-refresh fa-spin fa-3x fa-fw"></i><em>Loading...</em></p></div>
       : FetchData.renderForecastsTable(this.state.forecasts);
     
     let button = this.state.loading
@@ -61,7 +78,10 @@ export class FetchData extends Component {
     this.setState({ loading: true });
     const response = await fetch('api/Joke');
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    setTimeout(() => {
+      this.setState({ forecasts: data, loading: false });
+    }, 500);
+    
   }
   
 }

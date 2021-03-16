@@ -1,8 +1,7 @@
 /* Provide sufficient contrast against white background */
 body{
-  background-color: lightblue;
-  font-family: "Ubuntu-Italic", "Lucida Sans", helvetica, sans;
-  font-size: 2em;
+  background: linear-gradient(to right bottom,#6d327c,#485DA6,#00a1ba,#01b18e,#32b37b);
+  height:100vh
 }
 
 a {
@@ -15,21 +14,38 @@ code {
 
 .btn-primary {
   color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  background-color: #f90;
+  border-color: #f90;
+  border-radius: 30px;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #e033dd;
+  border-color: #e033dd;
+  border-radius: 30px;
+}
+
+.alert-primary{
+  color: #fff;
+  background-color: #01e18a;
+  border-color: #01e18a;
+  border-radius: 30px;
 }
 
 /* CSS talk bubble */
 .talk-bubble {
-  margin: 40px;
+  margin-bottom: 40px;
   display: inline-block;
   position: relative;
   width: 200px;
   height: auto;
-  background-color: lightyellow;
+  background-color: rgba(255, 255, 255, 90);
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.15);
 }
+
 .border{
-  border: 8px solid #666 !important;
+  border: 8px solid #fff !important;
 }
 .round{
   border-radius: 30px;
@@ -49,7 +65,7 @@ code {
   top: -8px;
   bottom: auto;
   border: 32px solid;
-  border-color: #666 transparent transparent transparent;
+  border-color: #fff transparent transparent transparent;
 }
 .tri-right.left-top:after{
   content: ' ';
@@ -61,7 +77,7 @@ code {
   top: 0px;
   bottom: auto;
   border: 22px solid;
-  border-color: lightyellow transparent transparent transparent;
+  border-color: rgba(255, 255, 255, 90) transparent transparent transparent;
 }
 
 /* Right triangle, left side slightly down */
@@ -75,7 +91,7 @@ code {
   top: 30px;
   bottom: auto;
   border: 20px solid;
-  border-color: #666 #666 transparent transparent;
+  border-color: #fff #fff transparent transparent;
 }
 .tri-right.left-in:after{
   content: ' ';
@@ -87,7 +103,7 @@ code {
   top: 38px;
   bottom: auto;
   border: 12px solid;
-  border-color: lightyellow lightyellow transparent transparent;
+  border-color: rgba(255, 255, 255, 90) rgba(255, 255, 255, 90) transparent transparent;
 }
 
 /*Right triangle, placed bottom left side slightly in*/
@@ -101,7 +117,7 @@ code {
   top: auto;
   bottom: -40px;
   border: 32px solid;
-  border-color: transparent transparent transparent #666;
+  border-color: transparent transparent transparent #fff;
 }
 .tri-right.btm-left:after{
   content: ' ';
@@ -113,7 +129,7 @@ code {
   top: auto;
   bottom: -20px;
   border: 22px solid;
-  border-color: transparent transparent transparent lightyellow;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 90);
 }
 
 /*Right triangle, placed bottom left side slightly in*/
@@ -127,7 +143,7 @@ code {
   top: auto;
   bottom: -40px;
   border: 20px solid;
-  border-color: #666 transparent transparent #666;
+  border-color: #fff transparent transparent #fff;
 }
 .tri-right.btm-left-in:after{
   content: ' ';
@@ -139,7 +155,7 @@ code {
   top: auto;
   bottom: -20px;
   border: 12px solid;
-  border-color: lightyellow transparent transparent lightyellow;
+  border-color: rgba(255, 255, 255, 90) transparent transparent rgba(255, 255, 255, 90);
 }
 
 /*Right triangle, placed bottom right side slightly in*/
@@ -152,7 +168,7 @@ code {
   right: 30px;
   bottom: -40px;
   border: 20px solid;
-  border-color: #666 #666 transparent transparent;
+  border-color: #fff #fff transparent transparent;
 }
 .tri-right.btm-right-in:after{
   content: ' ';
@@ -163,7 +179,7 @@ code {
   right: 38px;
   bottom: -20px;
   border: 12px solid;
-  border-color: lightyellow lightyellow transparent transparent;
+  border-color: rgba(255, 255, 255, 90) rgba(255, 255, 255, 90) transparent transparent;
 }
 /*
 	left: -8px;
@@ -189,7 +205,7 @@ code {
   right: -8px;
   bottom: -40px;
   border: 20px solid;
-  border-color: #666 #666 transparent transparent;
+  border-color: #fff #fff transparent transparent;
 }
 .tri-right.btm-right:after{
   content: ' ';
@@ -200,7 +216,7 @@ code {
   right: 0px;
   bottom: -20px;
   border: 12px solid;
-  border-color: lightyellow lightyellow transparent transparent;
+  border-color: rgba(255, 255, 255, 90) rgba(255, 255, 255, 90) transparent transparent;
 }
 
 /* Right triangle, right side slightly down*/
@@ -214,7 +230,7 @@ code {
   top: 30px;
   bottom: auto;
   border: 20px solid;
-  border-color: #666 transparent transparent #666;
+  border-color: #fff transparent transparent #fff;
 }
 .tri-right.right-in:after{
   content: ' ';
@@ -226,7 +242,7 @@ code {
   top: 38px;
   bottom: auto;
   border: 12px solid;
-  border-color: lightyellow transparent transparent lightyellow;
+  border-color: rgba(255, 255, 255, 90) transparent transparent rgba(255, 255, 255, 90);
 }
 
 /* Right triangle placed top right flush. */
@@ -240,7 +256,7 @@ code {
   top: -8px;
   bottom: auto;
   border: 32px solid;
-  border-color: #666 transparent transparent transparent;
+  border-color: #fff transparent transparent transparent;
 }
 .tri-right.right-top:after{
   content: ' ';
@@ -252,7 +268,7 @@ code {
   top: 0px;
   bottom: auto;
   border: 20px solid;
-  border-color: lightyellow transparent transparent transparent;
+  border-color: rgba(255, 255, 255, 90) transparent transparent transparent;
 }
 
 /* talk bubble contents */
@@ -260,6 +276,7 @@ code {
   padding: 1em;
   text-align: left;
   line-height: 1.5em;
+  font-size: 2em;
 }
 .talktext p{
   /* remove webkit p margins */

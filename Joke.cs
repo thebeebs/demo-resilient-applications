@@ -7,5 +7,6 @@ namespace app
         public string SetUp { get; set; }
 
         public string PunchLine { get; set; }
+        public string Source { get; set; }
     }
 }
