@@ -1,6 +1,8 @@
-/.DS_Store
+.DS_Store
 /.idea
 /appsettings.Development.json
 /appsettings.json
 /bin
 /obj
+ClientApp/src/.DS_Store
+ClientApp/node_modules/
